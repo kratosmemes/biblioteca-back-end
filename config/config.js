@@ -1,5 +1,5 @@
 //PUERTO
-process.env.PORT = process.env.PORT || 3000;
+process.env.PORT = 3000;
 
 // Entorno
 process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
@@ -19,4 +19,4 @@ process.env.URLDB = urlDB;
 process.env.SEED = process.env.SEED || 'firma-super-secreta';
 
 //EXPIRE TIME JWT
-process.env.CADUCIDAD_TOKEN = process.env.CADUCIDAD_TOKEN || '3h';
+process.env.CADUCIDAD_TOKEN = process.env.CADUCIDAD_TOKEN || '1h';

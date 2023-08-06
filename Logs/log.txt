@@ -1,0 +1,30 @@
+4/8/2023-21:28:35 | Starting try to connect to the database 
+4/8/2023-21:29:05 | It has been an error trying to connect to the Database 
+4/8/2023-21:29:05 | MongooseServerSelectionError: connect ECONNREFUSED ::1:27017 
+4/8/2023-21:29:58 | Starting try to connect to the database 
+4/8/2023-21:29:58 | Database connected successfully 
+4/8/2023-21:31:20 | Starting try to connect to the database 
+4/8/2023-21:31:20 | Database connected successfully 
+4/8/2023-21:31:22 | Starting try to connect to the database 
+4/8/2023-21:31:23 | Database connected successfully 
+4/8/2023-21:31:26 | Starting try to connect to the database 
+4/8/2023-21:31:26 | Database connected successfully 
+4/8/2023-21:32:53 | Starting try to connect to the database 
+4/8/2023-21:32:53 | escuchando por el puerto:  
+4/8/2023-21:32:53 | Database connected successfully 
+4/8/2023-21:33:07 | Starting try to connect to the database 
+4/8/2023-21:33:07 | escuchando por el puerto:  
+4/8/2023-21:33:07 | Database connected successfully 
+4/8/2023-21:34:16 | Starting try to connect to the database 
+4/8/2023-21:34:16 | escuchando por el puerto:  
+4/8/2023-21:34:16 | Database connected successfully 
+5/8/2023-19:44:23 | Starting try to connect to the database 
+5/8/2023-19:44:23 | escuchando por el puerto:  
+5/8/2023-19:44:53 | It has been an error trying to connect to the Database 
+5/8/2023-19:44:53 | MongooseServerSelectionError: connect ECONNREFUSED ::1:27017 
+5/8/2023-19:47:34 | Starting try to connect to the database 
+5/8/2023-19:47:34 | escuchando por el puerto:  
+5/8/2023-19:47:34 | Database connected successfully 
+5/8/2023-19:49:27 | Starting try to connect to the database 
+5/8/2023-19:49:27 | escuchando por el puerto:  
+5/8/2023-19:49:27 | Database connected successfully 

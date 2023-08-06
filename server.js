@@ -3,6 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require('body-parser');
+const { mainModule } = require('process');
+const { log } = require('./server/Utils/Utils');
 
 /// Habilita CORS
 app.use((req, res, next) => {
@@ -28,19 +30,18 @@ app.use(bodyParser.json());
 app.use(require('./server/routes/index'));
 
 //Conexion a la base de datos
+log("Starting try to connect to the database");
 mongoose.connect(process.env.URLDB, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true
-
-    },
-    (err, resp) => {
-        if (err) throw err;
-
-        console.log('Base de datos Online');
-    });
-
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            //useCreateIndex: true // This line is creating an error
+        },
+).then(res=>log("Database connected successfully"))
+.catch(err => {
+    log("It has been an error trying to connect to the Database");
+    log(err);
+});
 //Puerto de escucha de la aplicacion
 app.listen(process.env.PORT, () => {
-    console.log("escuchando por el puerto: ", process.env.PORT);
+    log("escuchando por el puerto: ", process.env.PORT);
 });
