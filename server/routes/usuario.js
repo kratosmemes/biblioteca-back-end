@@ -5,7 +5,7 @@ const app = express();
 const { verificaToken } = require('../middlewares/autenticacion');
 const Usuario = require('../models/usuario');
 const { VerifyDbStatus } = require('../middlewares/database_status_verify');
-const { log } = require('../Utils/Utils');
+const { log, JsonFieldIsUndefined, VerificaJson } = require('../Utils/Utils');
 
 app.get('/usuario', [verificaToken], (req, res) => {
     let desde = req.params.desde || 0;
@@ -33,20 +33,52 @@ app.get('/usuario', [verificaToken], (req, res) => {
 });
 
 
-app.post('/usuario', [VerifyDbStatus] , (req, res) => {
+app.post('/usuario', [VerifyDbStatus] , async (req, res) => {
+    log("Starting method to create a new user.");
     let body = req.body;
 
-    let usuario = new Usuario({
+    let user = new Usuario({
         nombre: body.nombre,
         apellido: body.apellido,
         email: body.email,
         password: bcrypt.hashSync(body.password, 10),
         role: body.role
     });
+
     
-    usuario.save().then(res => {   
-        Utils.log("Usuario creado con exito.");
-    }).catch(err => res.send(err));
+
+    await user.save()
+        .then( (success) => {
+            log("User has been created.");
+            log(success);
+            res.status(200).json({
+                status: "OK",
+                code: 200,
+                user: usuario,
+            });
+        })
+        .catch( async (err) => {
+            VerificaJson(err);
+            log("There has been an error when trying to create user.");
+            log(err);
+            
+            if(JsonFieldIsUndefined(err)){
+                res.status(500).json({
+                    status: "FAIL",
+                    code: 500,
+                    err: err
+                });
+            }else{
+                res.status(400).json({
+                    status: "FAIL",
+                    code: 400,
+                    error: "The email must be diferent and unique",
+                    type: "UniqueValidator",
+                    err: err
+                });
+            }
+
+        });
 });
 
 app.put('/usuario/:id', [verificaToken], (req, res) => {

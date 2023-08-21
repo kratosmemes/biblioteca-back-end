@@ -29,19 +29,23 @@ app.use(bodyParser.json());
 //Archivo agrupador de rutas
 app.use(require('./server/routes/index'));
 
-//Conexion a la base de datos
-log("Starting try to connect to the database");
-mongoose.connect(process.env.URLDB, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            //useCreateIndex: true // This line is creating an error
-        },
-).then(res=>log("Database connected successfully"))
-.catch(err => {
-    log("It has been an error trying to connect to the Database");
-    log(err);
-});
-//Puerto de escucha de la aplicacion
-app.listen(process.env.PORT, () => {
-    log("escuchando por el puerto: ", process.env.PORT);
-});
+const serverStart = async () => {
+    //Conexion a la base de datos
+    log("Starting try to connect to the database");
+    await mongoose.connect(process.env.URLDB, {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                //useCreateIndex: true // This line is creating an error
+            },
+    ).then(res=>log("Database connected successfully"))
+    .catch(err => {
+        log("It has been an error trying to connect to the Database");
+        log(err);
+    });
+    //Puerto de escucha de la aplicacion
+    await app.listen(process.env.PORT, () => {
+        log(`Server is up on port: ${process.env.PORT}`);
+    });
+}
+
+serverStart();

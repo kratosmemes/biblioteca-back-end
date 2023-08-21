@@ -6,7 +6,7 @@ let VerifyDbStatus = (req, res, next) => {
     if(Database_Status === 0){
         return res.status(500).json({
             Message: "Error",
-            Cause: "Database is not active"
+            Cause: "Database is not active",
         });
     }
 
