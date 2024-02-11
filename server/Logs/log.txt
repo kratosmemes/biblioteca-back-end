@@ -1,0 +1,7 @@
+11/2/2024-11:38:39 | Starting service initialization 
+11/2/2024-11:38:39 | Trying to connect to the database, please wait... 
+11/2/2024-11:39:09 | It has been an error trying to connect to the Database, please verify your conections and configurations 
+11/2/2024-11:40:04 | Starting service initialization 
+11/2/2024-11:40:04 | Trying to connect to the database, please wait... 
+11/2/2024-11:40:04 | Database connected successfully 
+11/2/2024-11:40:04 | Server is up on port: 3000 

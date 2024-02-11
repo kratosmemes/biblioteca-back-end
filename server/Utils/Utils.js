@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const nodeUtils = require('util');
-const log_route = (`${path.join("./Logs/log.txt")}`);
+const log_route = (`${path.resolve(__dirname, "../")+("/Logs/log.txt")}`);
 const usuarioModel = require('../models/usuario');
 
 /************************************************/
@@ -9,7 +9,6 @@ const usuarioModel = require('../models/usuario');
 /************************************************/
 
 const log = (message) => {
-    
     //Printing message to console
     console.log(message);
 
