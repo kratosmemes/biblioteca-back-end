@@ -1,0 +1,9 @@
+FROM mongo
+
+#Enviroment variables
+ENV MONGO_INITDB_ROOT_USERNAME=library
+ENV MONGO_INITDB_ROOT_PASSWORD=123
+ENV PORT=27017
+
+#Expose port
+EXPOSE ${PORT}
