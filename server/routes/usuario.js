@@ -32,55 +32,6 @@ app.get('/usuario', [verificaToken], (req, res) => {
         });
 });
 
-
-app.post('/usuario', [VerifyDbStatus] , async (req, res) => {
-    log("Starting method to create a new user.");
-    let body = req.body;
-
-    let user = new Usuario({
-        nombre: body.nombre,
-        apellido: body.apellido,
-        email: body.email,
-        password: bcrypt.hashSync(body.password, 10),
-        role: body.role
-    });
-
-    
-
-    await user.save()
-        .then( (success) => {
-            log("User has been created.");
-            log(success);
-            res.status(200).json({
-                status: "OK",
-                code: 200,
-                user: usuario,
-            });
-        })
-        .catch( async (err) => {
-            VerificaJson(err);
-            log("There has been an error when trying to create user.");
-            log(err);
-            
-            if(JsonFieldIsUndefined(err)){
-                res.status(500).json({
-                    status: "FAIL",
-                    code: 500,
-                    err: err
-                });
-            }else{
-                res.status(400).json({
-                    status: "FAIL",
-                    code: 400,
-                    error: "The email must be diferent and unique",
-                    type: "UniqueValidator",
-                    err: err
-                });
-            }
-
-        });
-});
-
 app.put('/usuario/:id', [verificaToken], (req, res) => {
     let id = req.params.id;
     let body = _.pick(req.body, ['nombre', 'apellido', 'role', 'estado']);

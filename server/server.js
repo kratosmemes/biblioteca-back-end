@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require('body-parser');
+const morgan = require('morgan')
 const { mainModule } = require('process');
 const { log } = require('./Utils/Utils');
 
@@ -27,7 +28,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //Archivo agrupador de rutas
-app.use(require('./routes/index'));
+app.use('/api/v1', require('./routes/index'));
+
+//Middlewares
+app.use(morgan('dev'));
 
 const serverStart = async () => {
     //Conexion a la base de datos
@@ -47,6 +51,7 @@ const serverStart = async () => {
     })
     .catch(err => {
         log("It has been an error trying to connect to the Database, please verify your conections and configurations");
+        log(err)
     });
 }
 

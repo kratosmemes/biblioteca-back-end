@@ -9,7 +9,8 @@ const usuarioModel = require('../models/usuario');
 /************************************************/
 
 const log = (message) => {
-    //Printing message to console
+
+    //Printing message to console dev only // Delete when prod or deploy
     console.log(message);
 
     if(typeof message == "string"){
@@ -23,7 +24,6 @@ const log = (message) => {
 
 /* Method to obtain full Date */
 function getFullDate(){
-
     let date_ob = new Date();
     let date = date_ob.getDate();
     let month = date_ob.getMonth() + 1;
@@ -32,9 +32,7 @@ function getFullDate(){
     let minutes = date_ob.getMinutes();
     let seconds = date_ob.getSeconds();
 
-
     return `${date}/${month}/${year}-${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${(seconds < 10 ? `0${seconds}` : seconds)}`;
-
 }
 
 /************************************************/
@@ -65,10 +63,6 @@ VerificaJson = (error) => {
         }
    
     });
-
-
-
-
 } 
 
 module.exports = {
